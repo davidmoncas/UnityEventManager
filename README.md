@@ -8,18 +8,29 @@ Implementation_triggerer and Implementation_listener are just examples on how to
 
 ## USAGE 
 to subscribe to an event use:
-```EventManager.Subscribe(Events.YourEnum.YourValue, (System.Action)SomeMethod);```
+```
+EventManager.Subscribe(Events.YourEnum.YourValue, (System.Action)SomeMethod);
+```
 if the method you want to pass has arguments, you need to explicitly say its type, for instance:
 
-```private void SomeMethod2(int a, string b){//...}```
+```
+private void SomeMethod2(int a, string b){//...}
+```
 then the subscription to the event should be
-```EventManager.Subscribe(Events.YourEnum.YourValue, (System.Action<int , string>)SomeMethod);```
+```
+EventManager.Subscribe(Events.YourEnum.YourValue, (System.Action<int , string>)SomeMethod2);
+```
 
-To unsubscribe from the event you use the same but with ```EventManager.Unsubscribe(yourEvent, yourMethod)```
+To unsubscribe from the event you use the same but with
+```
+EventManager.Unsubscribe(yourEvent, yourMethod)
+```
 
 Finally, to trigger  the events, you use:
-```EventManager.Trigger(Events.YourEnum.YourValue , arg1, arg2, ...);```
+```
+EventManager.Trigger(Events.YourEnum.YourValue , arg1, arg2, ...);
+```
 
-[!NOTE]
-- If the triggering doesn't have the right arguments (number and type) of the subscribing methods, the event will not be triggered
+### Note
+- If the triggering doesn't have the right arguments (number and type) of the subscribing methods, the event will not be triggered and no exeptions will be thrown
 - currently, the eventManager only accept events with up to 3 arguments of any type. Adding more  should not be difficult.
